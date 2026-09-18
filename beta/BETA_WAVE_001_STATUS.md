@@ -71,3 +71,23 @@ Required:
 4. raise evidence coverage for highest-fit candidates;
 5. choose operators for invitation based on learning value + fit, not prestige;
 6. generate prospect-specific messages only after the gate passes.
+
+
+## Private beta-runtime resolution state
+
+A dedicated private `marketink_beta_candidates` table now separates general ICP from cohort-specific fit/readiness.
+
+Aggregate state:
+- cohort rows: 15;
+- decision-maker public/resolved: 1;
+- public founder identified but current decision role unverified: 1;
+- general studio route only: 3;
+- unresolved contact/role: 10;
+- strategic competitive-conflict flags: 1;
+- public artist-availability signals: 1;
+- READY_TO_INVITE: 0.
+
+This prevents a high ICP score from automatically becoming a beta invitation.
+
+Next:
+`BETA_FIT_REVIEW`

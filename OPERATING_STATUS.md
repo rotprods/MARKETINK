@@ -166,3 +166,24 @@ Current beta gate:
 
 Rule:
 No prospect-specific outreach until identity/contact route and hard-gate review are complete.
+
+
+## Beta runtime separation
+
+Private Supabase now includes:
+`marketink_beta_candidates`
+
+Purpose:
+separate cohort-learning fit from normal commercial ICP.
+
+Current aggregate:
+- 15 cohort candidates;
+- 5 in REVIEW;
+- 10 DISCOVERED;
+- 1 public decision-maker resolved;
+- 1 public founder role identified;
+- 3 general routes;
+- 0 ready to invite.
+
+Next beta gate:
+`BETA_FIT_REVIEW`
