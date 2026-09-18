@@ -384,15 +384,21 @@ Do not let multiple roles create separate truths.
 
 ## 17. CURRENT GATE
 
-Current:
-`MARKETINK_OS_BOOTSTRAP`
+Completed:
+- `MARKETINK_OS_BOOTSTRAP`
+- `CURRICULUM_READY`
+- `FOUNDATION_TRACK_READY_FOR_PRODUCTION`
 
-After this PR:
-`CURRICULUM_READY`
+Current:
+`FOUNDATION_ASSET_PACK_READY`
+
+Next:
+`M00_PRODUCTION_READY`
 
 The next useful work is:
-- freeze the module production template;
-- generate the Academy asset schemas;
-- fully implement M00–M05.
+- run M01–M05 end-to-end against the canonical synthetic demo;
+- repair template defects;
+- create M01–M05 recording scripts;
+- freeze Foundation Track v1 before filming.
 
 Do not skip ahead to custom LMS engineering.
