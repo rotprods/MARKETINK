@@ -438,3 +438,37 @@ Hard rules:
 - React Native is not added to the marketing-web bundle; keep contracts portable;
 - do not introduce NestJS while Next Route Handlers + Supabase satisfy the current boundary.
 
+
+
+---
+
+## 19. WEB V7 REGRESSION GATE
+
+Canonical contract:
+`web/WEB_V7_REGRESSION_CONTRACT.md`
+
+Any agent modifying:
+- `app/**`;
+- `components/**`;
+- `lib/**`;
+- web motion / 3D;
+- INKSCAN;
+- responsive behavior;
+
+must preserve the current production regression.
+
+Minimum merge gate:
+1. TypeScript PASS.
+2. Next production build PASS.
+3. Playwright E2E PASS.
+4. No known horizontal-overflow regression.
+5. Reduced-motion remains usable.
+6. New human interaction has a new test.
+
+Do not treat generated standalone HTML as the production source of truth.
+
+Current gate:
+`WEB_V7_PRODUCTION_REGRESSION_GREEN`
+
+Next:
+`WEB_V7_CROSS_BROWSER_AND_DATA_HARDENED`
