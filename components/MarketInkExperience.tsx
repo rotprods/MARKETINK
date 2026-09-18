@@ -60,6 +60,8 @@ function EvidenceMethod() {
 }
 
 function AudioReferenceFrame({ asset }: { asset: MarketInkAsset }) {
+  const showDebug =
+    process.env.NEXT_PUBLIC_MARKETINK_ASSET_DEBUG === "true";
   const hasAudio =
     asset.status === "APPROVED_PUBLIC" &&
     asset.publicUse === true &&
@@ -69,7 +71,7 @@ function AudioReferenceFrame({ asset }: { asset: MarketInkAsset }) {
     <article className="audio-frame">
       <div className="audio-frame__top">
         <span>LISTENING ROOM</span>
-        <em>{asset.status}</em>
+        <em>{showDebug ? asset.status : "AUDIO PROOF"}</em>
       </div>
       <div className="audio-wave" aria-hidden="true">
         {Array.from({ length: 36 }, (_, index) => (
@@ -95,6 +97,8 @@ function AudioReferenceFrame({ asset }: { asset: MarketInkAsset }) {
 
 function VslSurface() {
   const vsl = assetSlots.vsl.master as MarketInkAsset;
+  const showDebug =
+    process.env.NEXT_PUBLIC_MARKETINK_ASSET_DEBUG === "true";
   const available =
     vsl.status === "APPROVED_PUBLIC" &&
     vsl.publicUse === true &&
@@ -120,7 +124,7 @@ function VslSurface() {
           <p>
             Poster · master · transcript · captions · chapters · analytics
           </p>
-          <em>MISSING ASSET · FRAME READY</em>
+          <em>{showDebug ? "MISSING ASSET · FRAME READY" : "VSL · FRAME READY"}</em>
         </div>
       )}
     </div>
