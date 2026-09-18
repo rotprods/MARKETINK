@@ -1,0 +1,73 @@
+{
+  "metadata": {
+    "synthetic": true,
+    "warning": "FICTIONAL TRAINING DATA — never present as a real client or case study.",
+    "studio_id": "DEMO-STUDIO-001",
+    "studio_name": "Black Needle Lab",
+    "city": "Murcia",
+    "period": "2026-08"
+  },
+  "artists": [
+    {
+      "artist_id": "DEMO-A01",
+      "name": "Luna",
+      "specialty": "blackwork",
+      "sellable_hours": 96,
+      "booked_hours": 72,
+      "average_ticket": 320
+    },
+    {
+      "artist_id": "DEMO-A02",
+      "name": "Nico",
+      "specialty": "realismo B&G",
+      "sellable_hours": 112,
+      "booked_hours": 98,
+      "average_ticket": 460
+    },
+    {
+      "artist_id": "DEMO-A03",
+      "name": "Mara",
+      "specialty": "fine line",
+      "sellable_hours": 88,
+      "booked_hours": 44,
+      "average_ticket": 190
+    }
+  ],
+  "funnel": {
+    "inquiries": 142,
+    "qualified": 93,
+    "consultations_quotes": 72,
+    "deposits": 45,
+    "bookings": 43,
+    "completed": 39
+  },
+  "economics": {
+    "average_ticket_blended": 338,
+    "average_deposit": 60,
+    "current_media_spend": 540
+  },
+  "lead_sources": [
+    {
+      "source": "Instagram organic",
+      "inquiries": 58
+    },
+    {
+      "source": "Meta Ads",
+      "inquiries": 46
+    },
+    {
+      "source": "Google",
+      "inquiries": 18
+    },
+    {
+      "source": "Referral",
+      "inquiries": 20
+    }
+  ],
+  "operating_observations": [
+    "Mara has substantial open capacity.",
+    "Studio receives enough inquiries to diagnose conversion before increasing spend.",
+    "Follow-up is manual and inconsistent.",
+    "Source is known for first inquiry but revenue is not linked back to campaign/creative."
+  ]
+}
