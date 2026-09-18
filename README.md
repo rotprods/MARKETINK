@@ -76,3 +76,17 @@ Current:
 
 Next:
 record and QA the M00 pilot before batch-recording the rest of Foundation.
+
+
+## Production status
+
+Academy Foundation is validated pre-filming.
+
+Current gate:
+`M00_PILOT_READY_TO_RECORD`
+
+Operational snapshot:
+`OPERATING_STATUS.md`
+
+The first recording pattern is defined in:
+`academy/production/M00_PILOT_PRODUCTION_PACK_V1.md`
