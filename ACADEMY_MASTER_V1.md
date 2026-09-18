@@ -1053,8 +1053,13 @@ Score binary:
 - [ ] current work visually consistent enough to understand;
 - [ ] no unsupported claims.
 
-Pass:
+Core pass:
 `>= 12/14` and booking path must work.
+
+Separate integration status:
+- `MANYCHAT_READINESS` is tracked independently;
+- it does not change the 14-point core Instagram QA score;
+- Manychat is optional until the student's chosen operating model requires Instagram automation.
 
 ---
 
