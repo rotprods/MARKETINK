@@ -14,7 +14,7 @@ public_evidence_items_on_enriched_subset: 16
 outreach_sent: 0
 beta_acceptances: 0
 hard_gate_reviews_completed: 0
-provisional_scores_completed: 0
+provisional_scores_completed: 5
 ```
 
 ## Evidence sources used
@@ -47,15 +47,27 @@ This validates the Academy design decision:
 
 > public marketing maturity and internal operating maturity must be measured separately.
 
+## Provisional ICP result
+
+Five enriched candidates were scored with explicit UNKNOWN/provisional treatment.
+
+Aggregate:
+- highest provisional ICP: 66 / Tier B;
+- remaining provisional scores: Tier C/D;
+- maximum evidence coverage: 44.44%;
+- all hard gates: UNREVIEWED;
+- outreach unlocked: 0.
+
+This is intentional. Public evidence is currently sufficient for research prioritization, not for a strong client-facing diagnosis.
+
 ## Next gate
 
-`BETA_PROVISIONAL_SCORING`
+`BETA_DECISION_MAKER_RESOLUTION`
 
 Required:
 1. owner/manager resolution where public;
 2. Instagram/professional-profile evidence;
-3. website/booking-path evidence;
-4. artist roster/style evidence;
-5. provisional ICP with UNKNOWN handling;
-6. provisional INKSCORE + evidence coverage;
-7. choose top operators for invitation based on learning value + fit, not prestige.
+3. hard-gate review;
+4. raise evidence coverage for highest-fit candidates;
+5. choose operators for invitation based on learning value + fit, not prestige;
+6. generate prospect-specific messages only after the gate passes.
