@@ -89,5 +89,20 @@ export async function POST(request: Request) {
     return NextResponse.redirect(new URL("/?inkscan=error#inkscan", request.url), 303);
   }
 
+  const rpcResult: unknown = await response.json().catch(() => null);
+  const first =
+    Array.isArray(rpcResult) && rpcResult.length > 0
+      ? (rpcResult[0] as Record<string, unknown>)
+      : null;
+
+  if (
+    !first ||
+    typeof first.intake_id !== "string" ||
+    typeof first.prospect_id !== "string"
+  ) {
+    console.error("INKSCAN CRM RPC returned an invalid response shape.");
+    return NextResponse.redirect(new URL("/?inkscan=error#inkscan", request.url), 303);
+  }
+
   return NextResponse.redirect(new URL("/gracias", request.url), 303);
 }
