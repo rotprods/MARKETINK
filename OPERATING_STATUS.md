@@ -88,6 +88,8 @@ Impact:
 - no Vercel build validation available yet;
 - no custom domain deployment yet.
 
+Tracked as GitHub issue #6.
+
 Resolution:
 reactivate Vercel billing, then run preview deployment and inspect build logs.
 
@@ -96,6 +98,8 @@ reactivate Vercel billing, then run preview deployment and inspect build logs.
 Web CI workflow is installed on `main`, but the current connector has not surfaced a pull-request workflow run for PR #4 after synchronization.
 
 Do not interpret missing run as success.
+
+Tracked as GitHub issue #7.
 
 Resolution paths:
 1. inspect Actions settings in GitHub UI;
