@@ -174,6 +174,7 @@ export function MarketInkExperience() {
   const heroRef = useRef<HTMLElement>(null);
   const [heroVisible, setHeroVisible] = useState(true);
   const [capability, setCapability] = useState(() => ({
+    webgl2: false,
     webgpu: false,
     reducedMotion: false,
     touch: false,
@@ -274,12 +275,19 @@ export function MarketInkExperience() {
 
       <section className="hero" id="top" ref={heroRef}>
         <div className="hero-scene">
-          <InkSignalScene
-            progressRef={progressRef}
-            reducedMotion={reducedMotion}
-            highQuality={highQuality}
-            active={heroVisible}
-          />
+          {capability.webgl2 ? (
+            <InkSignalScene
+              progressRef={progressRef}
+              reducedMotion={reducedMotion}
+              highQuality={highQuality}
+              active={heroVisible}
+            />
+          ) : (
+            <div
+              className="hero-scene__fallback hero-scene__fallback--static"
+              aria-hidden="true"
+            />
+          )}
         </div>
 
         <div className="hero-grid">
