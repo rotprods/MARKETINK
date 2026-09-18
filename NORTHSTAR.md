@@ -1657,7 +1657,9 @@ Execute in this order:
 - `FOUNDATION_ASSET_PACK_READY`
 - `M00_PRODUCTION_READY`
 
-**Current gate:** `FOUNDATION_VALIDATED_PRE_FILMING`
+**Completed gate:** `FOUNDATION_VALIDATED_PRE_FILMING`
+
+**Current gate:** `M00_PILOT_READY_TO_RECORD`
 
 **Next gate:** `M00_PILOT_RECORDED`
 
