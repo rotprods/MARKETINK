@@ -1645,6 +1645,24 @@ Execute in this order:
 12. convert validated workflows into DFY SOPs;
 13. feed repeated operational pain into InkFlow.
 
-**Current gate:** `MARKETINK_OS_BOOTSTRAP`
+**Completed gates:**
+- `MARKETINK_OS_BOOTSTRAP`
+- `CURRICULUM_READY`
+- `FOUNDATION_TRACK_READY_FOR_PRODUCTION`
 
-**Next gate:** `CURRICULUM_READY`
+**Current gate:** `FOUNDATION_ASSET_PACK_READY`
+
+**Next gate:** `M00_PRODUCTION_READY`
+
+Current evidence:
+- canonical Academy master exists;
+- A01–A06 downloadable templates exist;
+- synthetic demo studio exists;
+- M00 has passed a full synthetic run;
+- M00 recording script exists.
+
+Next exact action:
+1. QA A01–A06 as student-facing assets;
+2. generate M01–M05 demo runs;
+3. write M01–M05 recording scripts;
+4. run Foundation Track end-to-end before filming.
