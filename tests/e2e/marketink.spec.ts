@@ -29,7 +29,42 @@ test.describe("MARKET.INK production regression", () => {
     await skip.focus();
     await expect(skip).toBeFocused();
 
-    await expect(page.locator("canvas")).toHaveAttribute("aria-hidden", "true");
+    const canvas = page.locator("canvas");
+    const fallback = page.locator(".hero-scene__fallback--static");
+
+    await expect
+      .poll(async () => (await canvas.count()) + (await fallback.count()))
+      .toBeGreaterThan(0);
+
+    if (await canvas.count()) {
+      await expect(canvas).toHaveAttribute("aria-hidden", "true");
+      await expect(canvas).toHaveAttribute("role", "presentation");
+    } else {
+      await expect(fallback).toHaveAttribute("aria-hidden", "true");
+    }
+  });
+
+  test("loads a static branded hero when WebGL2 is unavailable", async ({ browser }) => {
+    const context = await browser.newContext();
+    const page = await context.newPage();
+
+    await page.addInitScript(() => {
+      const original = HTMLCanvasElement.prototype.getContext;
+      HTMLCanvasElement.prototype.getContext = function (
+        contextId: string,
+        ...args: unknown[]
+      ) {
+        if (contextId === "webgl2") return null;
+        return original.call(this, contextId as never, ...(args as never[]));
+      } as typeof HTMLCanvasElement.prototype.getContext;
+    });
+
+    await page.goto("/");
+
+    await expect(page.locator(".hero-scene__fallback--static")).toBeVisible();
+    await expect(page.getByRole("link", { name: /haz tu inkscan/i }).first()).toBeVisible();
+
+    await context.close();
   });
 
   test("primary internal navigation lands near target below fixed nav", async ({ page }) => {
