@@ -12,12 +12,8 @@ import {
   Vignette,
 } from "@react-three/postprocessing";
 import { easing } from "maath";
-import {
-  MutableRefObject,
-  useEffect,
-  useMemo,
-  useRef,
-} from "react";
+import { useEffect, useMemo, useRef } from "react";
+import type { MutableRefObject } from "react";
 import * as THREE from "three";
 
 type SceneProps = {
@@ -70,8 +66,18 @@ function SignalCore({
       ? 0.22
       : 0.22 + Math.sin(state.clock.elapsedTime * 0.36) * 0.06 + p * 0.34;
 
-    easing.damp(group.current.rotation, "z", targetRotation, 1.8, delta);
-    easing.damp(group.current.rotation, "y", p * -0.28, 1.8, delta);
+    group.current.rotation.z = THREE.MathUtils.damp(
+      group.current.rotation.z,
+      targetRotation,
+      1.8,
+      delta,
+    );
+    group.current.rotation.y = THREE.MathUtils.damp(
+      group.current.rotation.y,
+      p * -0.28,
+      1.8,
+      delta,
+    );
 
     const targetScale = 1 + Math.min(p, 0.34) * 0.18;
     easing.damp3(
@@ -123,8 +129,18 @@ function InkMass({
     if (!ref.current) return;
     const p = progressRef.current;
     if (!reducedMotion) {
-      easing.damp(ref.current.rotation, "y", state.clock.elapsedTime * 0.12, 2, delta);
-      easing.damp(ref.current.rotation, "z", p * 0.28, 2, delta);
+      ref.current.rotation.y = THREE.MathUtils.damp(
+        ref.current.rotation.y,
+        state.clock.elapsedTime * 0.12,
+        2,
+        delta,
+      );
+      ref.current.rotation.z = THREE.MathUtils.damp(
+        ref.current.rotation.z,
+        p * 0.28,
+        2,
+        delta,
+      );
     }
   });
 
@@ -135,7 +151,7 @@ function InkMass({
       rotationIntensity={reducedMotion ? 0 : 0.08}
     >
       <mesh ref={ref} position={[-0.62, -0.46, -0.62]} scale={[0.76, 0.96, 0.7]}>
-        <icosahedronGeometry args={[0.72, 7]} />
+        <icosahedronGeometry args={[0.72, 5]} />
         <meshPhysicalMaterial
           color="#050505"
           metalness={0.12}
@@ -167,7 +183,6 @@ function SignalRings() {
 
 function SignalParticles({ highQuality }: { highQuality: boolean }) {
   const count = highQuality ? 72 : 32;
-  const mesh = useRef<THREE.InstancedMesh>(null);
   const dummy = useMemo(() => new THREE.Object3D(), []);
 
   const points = useMemo(
@@ -185,24 +200,40 @@ function SignalParticles({ highQuality }: { highQuality: boolean }) {
     [count],
   );
 
+  const instanced = useMemo(() => {
+    const geometry = new THREE.SphereGeometry(1, 6, 6);
+    const material = new THREE.MeshBasicMaterial({
+      color: "#DE2727",
+      transparent: true,
+      opacity: 0.58,
+    });
+    const next = new THREE.InstancedMesh(geometry, material, count);
+    next.frustumCulled = false;
+    return next;
+  }, [count]);
+
   useEffect(() => {
-    if (!mesh.current) return;
     points.forEach((point, index) => {
       dummy.position.copy(point);
       const scale = 0.024 + (index % 5) * 0.006;
       dummy.scale.setScalar(scale);
       dummy.updateMatrix();
-      mesh.current?.setMatrixAt(index, dummy.matrix);
+      instanced.setMatrixAt(index, dummy.matrix);
     });
-    mesh.current.instanceMatrix.needsUpdate = true;
-  }, [dummy, points]);
+    instanced.instanceMatrix.needsUpdate = true;
 
-  return (
-    <instancedMesh ref={mesh} args={[undefined, undefined, count]}>
-      <sphereGeometry args={[1, 6, 6]} />
-      <meshBasicMaterial color="#DE2727" transparent opacity={0.58} />
-    </instancedMesh>
-  );
+    return () => {
+      instanced.geometry.dispose();
+      const material = instanced.material;
+      if (Array.isArray(material)) {
+        material.forEach((entry) => entry.dispose());
+      } else {
+        material.dispose();
+      }
+    };
+  }, [dummy, instanced, points]);
+
+  return <primitive object={instanced} />;
 }
 
 function CameraDirector({
