@@ -174,6 +174,7 @@ export function MarketInkExperience() {
   const heroRef = useRef<HTMLElement>(null);
   const [heroVisible, setHeroVisible] = useState(true);
   const [capability, setCapability] = useState(() => ({
+    webgl2: false,
     webgpu: false,
     reducedMotion: false,
     touch: false,
@@ -245,8 +246,11 @@ export function MarketInkExperience() {
     return () => context.revert();
   }, [reducedMotion]);
 
+  const motionSafe =
+    reducedMotion || capability.coarsePointer || capability.touch;
+
   const highQuality =
-    !reducedMotion && !capability.coarsePointer && !capability.touch;
+    !motionSafe && capability.webgl2;
 
   return (
     <main className="site-shell" id="main" tabIndex={-1}>
@@ -274,20 +278,27 @@ export function MarketInkExperience() {
 
       <section className="hero" id="top" ref={heroRef}>
         <div className="hero-scene">
-          <InkSignalScene
-            progressRef={progressRef}
-            reducedMotion={reducedMotion}
-            highQuality={highQuality}
-            active={heroVisible}
-          />
+          {capability.webgl2 ? (
+            <InkSignalScene
+              progressRef={progressRef}
+              reducedMotion={reducedMotion}
+              highQuality={highQuality}
+              active={heroVisible}
+            />
+          ) : (
+            <div
+              className="hero-scene__fallback hero-scene__fallback--static"
+              aria-hidden="true"
+            />
+          )}
         </div>
 
         <div className="hero-grid">
           <motion.div
             className="hero-copy"
-            initial={reducedMotion ? false : { opacity: 0, y: 32 }}
+            initial={motionSafe ? false : { opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: reducedMotion ? 0 : 0.28 }}
+            transition={{ duration: 0.8, delay: motionSafe ? 0 : 0.28 }}
           >
             <div className="hero-eyebrow">
               <span>TATTOO GROWTH OS</span>
@@ -346,10 +357,13 @@ export function MarketInkExperience() {
             {operatorLoad.map((item, index) => (
               <motion.span
                 key={item}
-                initial={reducedMotion ? false : { opacity: 0, x: index % 2 ? 50 : -50 }}
+                initial={motionSafe ? false : { opacity: 0, x: index % 2 ? 50 : -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.45 }}
-                transition={{ duration: 0.55, delay: index * 0.03 }}
+                transition={{
+                  duration: motionSafe ? 0 : 0.55,
+                  delay: motionSafe ? 0 : index * 0.03,
+                }}
               >
                 {item}
               </motion.span>
@@ -428,10 +442,13 @@ export function MarketInkExperience() {
               <motion.article
                 className="path-card"
                 key={path.id}
-                initial={reducedMotion ? false : { opacity: 0, y: 50 }}
+                initial={motionSafe ? false : { opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.65, delay: index * 0.08 }}
+                transition={{
+                  duration: motionSafe ? 0 : 0.65,
+                  delay: motionSafe ? 0 : index * 0.08,
+                }}
               >
                 <span>{path.eyebrow}</span>
                 <strong>{path.title}</strong>

@@ -29,7 +29,47 @@ test.describe("MARKET.INK production regression", () => {
     await skip.focus();
     await expect(skip).toBeFocused();
 
-    await expect(page.locator("canvas")).toHaveAttribute("aria-hidden", "true");
+    const canvas = page.locator("canvas");
+    const fallback = page.locator(".hero-scene__fallback--static");
+
+    await expect
+      .poll(async () => (await canvas.count()) + (await fallback.count()))
+      .toBeGreaterThan(0);
+
+    if (await canvas.count()) {
+      await expect(canvas).toHaveAttribute("aria-hidden", "true");
+      await expect(canvas).toHaveAttribute("role", "presentation");
+    } else {
+      await expect(fallback).toHaveAttribute("aria-hidden", "true");
+    }
+  });
+
+  test("loads a static branded hero when WebGL2 is unavailable", async ({ browser }) => {
+    const context = await browser.newContext();
+    const page = await context.newPage();
+
+    await page.addInitScript(() => {
+      const original = HTMLCanvasElement.prototype.getContext;
+      HTMLCanvasElement.prototype.getContext = function (
+        this: HTMLCanvasElement,
+        contextId: string,
+        ...args: unknown[]
+      ) {
+        if (contextId === "webgl2") return null;
+        return (original as (...callArgs: unknown[]) => unknown).call(
+          this,
+          contextId,
+          ...args,
+        ) as never;
+      } as typeof HTMLCanvasElement.prototype.getContext;
+    });
+
+    await page.goto("/");
+
+    await expect(page.locator(".hero-scene__fallback--static")).toBeVisible();
+    await expect(page.getByRole("link", { name: /haz tu inkscan/i }).first()).toBeVisible();
+
+    await context.close();
   });
 
   test("primary internal navigation lands near target below fixed nav", async ({ page }) => {
@@ -207,6 +247,48 @@ test.describe("MARKET.INK production regression", () => {
     await expect(page.locator("#inkscan")).toHaveCount(1);
 
     await context.close();
+  });
+
+
+  test("operational visible text does not fall below 12px", async ({ page }) => {
+    await page.goto("/");
+
+    const tiny = await page.locator("body *").evaluateAll((elements) =>
+      elements
+        .filter(
+          (element) =>
+            element.children.length === 0 &&
+            (element.textContent ?? "").trim().length > 0 &&
+            element.getClientRects().length > 0,
+        )
+        .map((element) => ({
+          text: (element.textContent ?? "").trim().slice(0, 50),
+          size: Number.parseFloat(getComputedStyle(element).fontSize),
+          className: (element as HTMLElement).className,
+        }))
+        .filter((item) => item.size < 12),
+    );
+
+    expect(tiny).toEqual([]);
+  });
+
+  test("WCAG text-spacing override does not create horizontal page overflow", async ({ page }) => {
+    for (const viewport of [
+      { width: 390, height: 844 },
+      { width: 1440, height: 900 },
+    ]) {
+      await page.setViewportSize(viewport);
+      await page.goto("/");
+      await page.addStyleTag({
+        content:
+          "*{line-height:1.5!important;letter-spacing:.12em!important;word-spacing:.16em!important}p{margin-bottom:2em!important}",
+      });
+
+      const overflow = await page.evaluate(
+        () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      );
+      expect(overflow).toBeLessThanOrEqual(1);
+    }
   });
 
   test("small-screen touch targets are at least 44px for primary controls", async ({ page }) => {

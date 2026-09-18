@@ -1768,3 +1768,145 @@ section[id] {
     scroll-behavior: auto;
   }
 }
+
+
+/* Cross-browser final hardening: minimum operational text and static GPU fallback. */
+.nav-cta,
+.hero-eyebrow,
+.hero-meta,
+.hero-scroll-cue,
+.split-heading > p,
+.section-index,
+.system-step__meta,
+.vsl-surface__empty > span,
+.vsl-surface__empty > p,
+.vsl-surface__empty > em,
+.path-card > span,
+.asset-frame__index,
+.asset-frame__fallback small,
+.asset-frame__fallback em,
+.evidence-method span,
+.audio-frame__top,
+.audio-frame__bottom span,
+.academy-list span,
+.form-grid label > span,
+.consent-row,
+.inkscan-form > small,
+.site-footer__bottom {
+  font-size: max(0.75rem, 12px);
+}
+
+.hero-scene__fallback--static {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 64% 43%, rgba(222, 39, 39, 0.24), transparent 16%),
+    radial-gradient(circle at 57% 56%, rgba(0, 0, 0, 0.14), transparent 23%),
+    conic-gradient(
+      from 18deg at 62% 48%,
+      transparent 0 12%,
+      rgba(222, 39, 39, 0.14) 12% 13%,
+      transparent 13% 31%,
+      rgba(0, 0, 0, 0.08) 31% 32%,
+      transparent 32% 100%
+    );
+}
+
+.hero-scene__fallback--static::before {
+  content: "";
+  position: absolute;
+  left: 49%;
+  top: 38%;
+  width: 24%;
+  aspect-ratio: 1.65;
+  background: var(--red);
+  clip-path: polygon(0 29%, 61% 29%, 61% 0, 100% 50%, 61% 100%, 61% 71%, 0 71%);
+  transform: rotate(-13deg);
+  filter: drop-shadow(0 20px 32px rgba(222, 39, 39, 0.18));
+}
+
+.hero-scene__fallback--static::after {
+  content: "";
+  position: absolute;
+  left: 44%;
+  top: 48%;
+  width: 18%;
+  aspect-ratio: 1;
+  border-radius: 48% 52% 58% 42% / 56% 42% 58% 44%;
+  background: radial-gradient(circle at 30% 20%, #303030, #0b0b0b 60%, #000);
+  opacity: 0.96;
+  transform: rotate(-12deg);
+}
+
+@media (max-width: 820px) {
+  .hero-scene__fallback--static::before {
+    left: 52%;
+    top: 40%;
+    width: 30%;
+  }
+
+  .hero-scene__fallback--static::after {
+    left: 45%;
+    top: 52%;
+    width: 24%;
+  }
+}
+
+
+/* Mobile CTA stability: prevent stacking/interception during touch/WebKit interaction. */
+.hero-copy,
+.hero-actions {
+  position: relative;
+  z-index: 8;
+}
+
+@media (max-width: 820px) {
+  .hero {
+    min-height: 100svh;
+    z-index: 1;
+  }
+
+  .hero-grid {
+    min-height: 100svh;
+    padding-bottom: 110px;
+  }
+
+  .hero-copy {
+    z-index: 10;
+  }
+
+  .hero-actions {
+    z-index: 12;
+  }
+
+  .operator-section {
+    position: relative;
+    z-index: 0;
+  }
+}
+
+
+/* WebKit mobile hit-testing: only actual hero controls receive pointer events. */
+@media (max-width: 820px) {
+  .hero-grid {
+    pointer-events: none;
+  }
+
+  .hero-copy,
+  .hero-copy a,
+  .hero-copy button,
+  .hero-actions {
+    pointer-events: auto;
+  }
+
+  .hero-actions .button {
+    scroll-margin-top: 96px;
+  }
+
+  .hero-scene,
+  .hero-meta,
+  .hero-scroll-cue,
+  .operator-section {
+    pointer-events: none;
+  }
+}
