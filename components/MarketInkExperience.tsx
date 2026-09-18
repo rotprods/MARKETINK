@@ -171,6 +171,8 @@ export function MarketInkExperience() {
   const progressRef = useRef(0);
   const { scrollYProgress } = useScroll();
   const systemRef = useRef<HTMLElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
+  const [heroVisible, setHeroVisible] = useState(true);
   const [capability, setCapability] = useState(() => ({
     webgpu: false,
     reducedMotion: false,
@@ -184,6 +186,18 @@ export function MarketInkExperience() {
 
   useEffect(() => {
     setCapability(detectGraphicsCapability());
+  }, []);
+
+  useEffect(() => {
+    if (!heroRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setHeroVisible(entry.isIntersecting),
+      { rootMargin: "120px" },
+    );
+
+    observer.observe(heroRef.current);
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -235,8 +249,14 @@ export function MarketInkExperience() {
     !reducedMotion && !capability.coarsePointer && !capability.touch;
 
   return (
-    <main className="site-shell">
-      <SmoothScroll disabled={reducedMotion} />
+    <main className="site-shell" id="main" tabIndex={-1}>
+      <a className="skip-link" href="#main">
+        Saltar al contenido
+      </a>
+
+      <SmoothScroll
+        disabled={reducedMotion || capability.coarsePointer || capability.touch}
+      />
 
       <nav className="site-nav" aria-label="Navegación principal">
         <a href="#top" aria-label="MARKET.INK inicio">
@@ -252,12 +272,13 @@ export function MarketInkExperience() {
         </a>
       </nav>
 
-      <section className="hero" id="top">
+      <section className="hero" id="top" ref={heroRef}>
         <div className="hero-scene">
           <InkSignalScene
             progressRef={progressRef}
             reducedMotion={reducedMotion}
             highQuality={highQuality}
+            active={heroVisible}
           />
         </div>
 
@@ -547,27 +568,27 @@ export function MarketInkExperience() {
 
               <label>
                 <span>Nombre / estudio</span>
-                <input name="name" required maxLength={160} />
+                <input name="name" autoComplete="organization" required maxLength={160} />
               </label>
 
               <label>
                 <span>Ciudad</span>
-                <input name="city" required maxLength={120} />
+                <input name="city" autoComplete="address-level2" required maxLength={120} />
               </label>
 
               <label>
                 <span>Instagram</span>
-                <input name="instagram" required maxLength={160} placeholder="@..." />
+                <input name="instagram" autoComplete="off" required maxLength={160} placeholder="@..." />
               </label>
 
               <label>
                 <span>Email</span>
-                <input name="email" type="email" required maxLength={254} />
+                <input name="email" autoComplete="email" type="email" required maxLength={254} />
               </label>
 
               <label>
                 <span>Web · opcional</span>
-                <input name="website" type="url" maxLength={300} placeholder="https://..." />
+                <input name="website" inputMode="url" type="url" maxLength={300} placeholder="https://..." />
               </label>
 
               <label className="form-grid__wide">

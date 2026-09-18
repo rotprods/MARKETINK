@@ -20,6 +20,7 @@ type SceneProps = {
   progressRef: MutableRefObject<number>;
   reducedMotion: boolean;
   highQuality: boolean;
+  active: boolean;
 };
 
 function useSignalGeometry() {
@@ -297,7 +298,11 @@ export function InkSignalScene(props: SceneProps) {
         alpha: false,
         powerPreference: "high-performance",
       }}
-      aria-hidden="true"
+      frameloop={props.active && !props.reducedMotion ? "always" : "demand"}
+      onCreated={({ gl }) => {
+        gl.domElement.setAttribute("aria-hidden", "true");
+        gl.domElement.setAttribute("role", "presentation");
+      }}
     >
       <Scene {...props} />
     </Canvas>
