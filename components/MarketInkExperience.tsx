@@ -12,6 +12,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
 import { Wordmark, SignalGlyph } from "@/components/brand/Wordmark";
 import { SmoothScroll } from "@/components/experience/SmoothScroll";
+import { SceneErrorBoundary } from "@/components/experience/SceneErrorBoundary";
 import { AssetFrame } from "@/components/media/AssetFrame";
 import { assetSlots, type MarketInkAsset } from "@/lib/assets";
 import { detectGraphicsCapability } from "@/lib/capabilities";
@@ -279,12 +280,21 @@ export function MarketInkExperience() {
       <section className="hero" id="top" ref={heroRef}>
         <div className="hero-scene">
           {capability.webgl2 ? (
-            <InkSignalScene
-              progressRef={progressRef}
-              reducedMotion={reducedMotion}
-              highQuality={highQuality}
-              active={heroVisible}
-            />
+            <SceneErrorBoundary
+              fallback={
+                <div
+                  className="hero-scene__fallback hero-scene__fallback--static"
+                  aria-hidden="true"
+                />
+              }
+            >
+              <InkSignalScene
+                progressRef={progressRef}
+                reducedMotion={reducedMotion}
+                highQuality={highQuality}
+                active={heroVisible}
+              />
+            </SceneErrorBoundary>
           ) : (
             <div
               className="hero-scene__fallback hero-scene__fallback--static"
