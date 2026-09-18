@@ -5,7 +5,9 @@ export const metadata: Metadata = {
   title: "MARKET.INK — Tattoo Growth OS",
   description:
     "El sistema de crecimiento para estudios de tatuaje y tatuadores: contenido, conversión, Meta Ads, WhatsApp, CRM, reservas y retención.",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://market.ink"),
+  metadataBase: process.env.NEXT_PUBLIC_SITE_URL
+    ? new URL(process.env.NEXT_PUBLIC_SITE_URL)
+    : undefined,
   openGraph: {
     title: "MARKET.INK — Tattoo Growth OS",
     description:
