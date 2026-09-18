@@ -15,6 +15,8 @@ export function AssetFrame({
   ratio = "landscape",
 }: AssetFrameProps) {
   const canRender = canRenderPublicly(asset);
+  const showDebug =
+    process.env.NEXT_PUBLIC_MARKETINK_ASSET_DEBUG === "true";
 
   return (
     <article
@@ -30,7 +32,7 @@ export function AssetFrame({
           <span className="asset-frame__index">{asset.id}</span>
           <strong>{title}</strong>
           <small>{eyebrow}</small>
-          <em>{asset.status}</em>
+          <em>{showDebug ? asset.status : eyebrow}</em>
         </div>
       )}
     </article>
