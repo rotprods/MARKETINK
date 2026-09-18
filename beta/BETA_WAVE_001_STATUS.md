@@ -91,3 +91,22 @@ This prevents a high ICP score from automatically becoming a beta invitation.
 
 Next:
 `BETA_FIT_REVIEW`
+
+
+## Routing / conflict review delta
+
+Private CRM state after decision-maker enrichment:
+- DISCOVERED: 10;
+- REVIEW: 4;
+- NURTURE / benchmark: 1;
+- routing drafts prepared but NOT sent: 3;
+- public founder identified: 1;
+- public decision-maker identified: 1 (benchmark/nurture due competitive education conflict);
+- READY_TO_INVITE: 0;
+- external outreach sent: 0.
+
+The beta system now distinguishes:
+`COMMERCIAL ICP != BETA FIT != OUTREACH READINESS`
+
+Next externally consequential action:
+human review/authorization of routing messages.
