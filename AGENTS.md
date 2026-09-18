@@ -409,3 +409,32 @@ The next useful work is:
 - then record M00-L02–L06 before batching M01–M05.
 
 Do not skip ahead to custom LMS engineering.
+
+---
+
+## 18. WEB EXPERIENCE CONTRACT
+
+For any MARKET.INK website work, read in this order:
+
+1. `brand/BRAND_CANON_V2.md`
+2. `web/WEBOS_ADOPTION_V2.md`
+3. `web/ASSET_INGESTION_V2.md`
+4. `web/WEB_QA_V2.md`
+5. `NORTHSTAR.md`
+
+Source doctrine:
+`rotprods/web-os` → `immersive-web-v7` + `design_rules/01..10`.
+
+MARKET.INK web tier:
+`L5 — Experimental 50K+ Build`
+
+Hard rules:
+- 3D must represent business value;
+- WebGPU is progressive, never a hard dependency;
+- WebGL2/R3F is the stable V2 path;
+- missing media uses typed asset states and branded fallbacks;
+- no fabricated testimony, tattoo work, ad result or client metric;
+- mobile and reduced-motion versions remain premium;
+- React Native is not added to the marketing-web bundle; keep contracts portable;
+- do not introduce NestJS while Next Route Handlers + Supabase satisfy the current boundary.
+
