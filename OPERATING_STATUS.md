@@ -44,67 +44,88 @@ Canonical strategic truth remains `NORTHSTAR.md`.
 - [x] machine-readable product requirement schema
 - [x] readiness-gated adoption model
 
+## Website V2
+- [x] brand manual translated into `brand/BRAND_CANON_V2.md`
+- [x] WebOS `immersive-web-v7` doctrine adopted
+- [x] L5 / award-grade architecture
+- [x] Next.js 16.3.3 + React 19.2
+- [x] R3F / Three.js procedural INK ENGINE
+- [x] GSAP + Lenis + Framer Motion
+- [x] stable WebGL2 path + WebGPU capability detection
+- [x] mobile condensed edition
+- [x] reduced-motion edition
+- [x] VSL / artist / tattoo / ad / testimonial / audio frames
+- [x] evidence-gated public media registry
+- [x] INKSCAN → private Supabase CRM
+- [x] TypeScript exact-head CI PASS
+- [x] production build exact-head CI PASS
+- [x] PR #12 merged to `main` at `b7bcf0eee2bfc02c7c24b4020c207bcf0c6e78ba`
+- [x] legacy PR #4 closed as superseded
+
 ---
 
 # AMBER — BUILT BUT NOT RELEASED
 
-## Website / VSL
-Branch:
-`web-vsl-v1`
+## Production media
 
-PR:
-`#4`
+The web architecture is complete, but the final public asset package is still incomplete.
 
-Built:
-- Next.js web application
-- VSL architecture/script
-- INKSCAN form
-- CRM route
-- Supabase migrations persisted
-- evidence-gated proof section
-- responsive visual system
+Required / strongly preferred:
+- standalone primary logo SVG;
+- monochrome logo SVGs;
+- red signal/isotype SVG;
+- rose SVG;
+- licensed webfont source/files for TAN Tangkiwood and Garet;
+- VSL master + poster + transcript/captions;
+- approved artist/tattoo/process media;
+- approved testimonials/video/audio;
+- approved ad/creative examples;
+- evidence references for any public performance result.
 
-Not merged:
-- real build/typecheck has not completed.
+The supplied brand-manual pages remain canonical **visual references**, not production logo files.
 
-Rule:
-**Do not merge PR #4 without a real build.**
+Asset ingestion contract:
+`web/ASSET_INGESTION_V2.md`
+
+## Package reproducibility
+
+Current CI uses a clean `npm install` and has passed twice.
+
+A committed `package-lock.json` is still desirable before long-term production hardening so dependency resolution becomes fully deterministic.
+
+This is engineering debt, not a current compile blocker.
 
 ---
 
 # RED — EXTERNAL BLOCKERS
 
-## Vercel
+## Vercel preview / production
 
-Preview deployment attempted and rejected by Vercel:
+Only remaining website infrastructure blocker tracked as issue #6.
 
-`resource_creation_blocked`
+Previous direct preview attempt returned:
+
+`402 resource_creation_blocked`
 
 Reason:
-workspace subscription suspended until a valid payment method reactivates Pro.
+Vercel Pro workspace is suspended until billing/payment is reactivated.
 
-Impact:
-- cannot create MARKET.INK preview/project via current Vercel team;
-- no Vercel build validation available yet;
-- no custom domain deployment yet.
+Code status is independent and GREEN:
+- clean install PASS;
+- typecheck PASS;
+- Next.js 16.3.3 production build PASS;
+- GitHub Actions issue #7 resolved/closed.
 
-Tracked as GitHub issue #6.
-
-Resolution:
-reactivate Vercel billing, then run preview deployment and inspect build logs.
-
-## GitHub Actions
-
-Web CI workflow is installed on `main`, but the current connector has not surfaced a pull-request workflow run for PR #4 after synchronization.
-
-Do not interpret missing run as success.
-
-Tracked as GitHub issue #7.
-
-Resolution paths:
-1. inspect Actions settings in GitHub UI;
-2. trigger/observe a run once enabled;
-3. alternatively use Vercel preview after billing reactivation.
+Required after Vercel reactivation:
+1. preview current `main`;
+2. configure server-side Supabase secret;
+3. set production site URL;
+4. set asset debug false;
+5. desktop + mobile visual QA;
+6. synthetic INKSCAN smoke test;
+7. idempotence check;
+8. remove synthetic data;
+9. attach custom domain only after QA.
 
 ---
 
@@ -126,26 +147,30 @@ Then:
 
 # CURRENT WEB GATE
 
-`WEB_BUILD_VALIDATION_BLOCKED_EXTERNAL`
+`WEB_V2_BUILD_GREEN → PREVIEW_DEPLOYMENT`
 
-Backend/CRM is ready.
+Code and CRM boundary are ready.
 
-Frontend merge waits for build evidence.
+External blocker:
+Vercel billing/reactivation (issue #6).
+
+Separate content gate:
+production brand/media assets.
 
 ---
 
 # NEXT HIGHEST-ROAS EXECUTION
 
-1. Record M00-L01 micro-pilot.
-2. QA with `M00_PILOT_PRODUCTION_PACK_V1.md`.
+1. Supply standalone MARKET.INK SVG/logo/isotype assets and licensed font source.
+2. Ingest VSL / tattoo / artist / testimonial / ad assets through `lib/assets.ts`.
 3. Reactivate Vercel.
-4. Build PR #4 as preview.
-5. Fix build/visual defects.
-6. Connect environment secret server-side.
-7. Smoke-test INKSCAN → Supabase.
-8. Only then merge/deploy.
-9. Recruit first beta operators.
-10. Start evidence-backed case-study capture immediately.
+4. Deploy current `main` as preview.
+5. Configure Supabase server secret and production site URL.
+6. Run desktop/mobile/reduced-motion visual QA.
+7. Smoke-test INKSCAN → Supabase and delete synthetic data.
+8. Attach custom domain after preview QA.
+9. In parallel, record M00-L01 micro-pilot.
+10. Continue beta-fit review without sending unapproved outreach.
 
 
 ---

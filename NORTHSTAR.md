@@ -1587,26 +1587,34 @@ No business model depends on "€20/month gives autonomous Meta operations" unti
 
 ---
 
-# 25. CROSS-REPO ISSUE — tattoo-saas
+# 25. CROSS-REPO CONTRACT — tattoo-saas
 
-Current `rotprods/tattoo-saas` documentation contains an old identity/ownership statement naming **Luis** as product owner and writer.
+**RESOLVED.**
 
-For MARKET.INK integration this must be treated as stale until reconciled in that repo.
+The stale ownership/status documentation in `rotprods/tattoo-saas` has been reconciled.
 
-Do not silently change tattoo-saas from this repository.
+Canonical boundary:
 
-Create a dedicated cross-repo reconciliation task before the first production integration.
+```text
+MARKET.INK
+= GTM + Academy + agency delivery + INKSCAN + evidence + field learning
 
-Also preserve its architectural decisions unless explicitly superseded:
-- InkFlow positioning;
-- WhatsApp-first;
-- quote/mockup wedge;
-- booking/deposit;
-- commissions;
-- reviews;
-- metrics;
+InkFlow / tattoo-saas
+= software product + code + API + frontend + DB + product integrations + tests/deploy
+```
+
+Bridge source:
+`rotprods/tattoo-saas/MARKETINK_BRIDGE.md`
+
+Validated MARKET.INK field pain may become an InkFlow requirement only through the evidence-backed cross-repo requirement contract.
+
+Preserve shared principles:
+- WhatsApp-first relevance where useful;
+- studio-owner / multi-artist model;
+- no review gating;
 - health-data isolation;
-- no review gating.
+- no AI replacement of artistic judgment;
+- booking/deposit/revenue outcomes over vanity metrics.
 
 ---
 
@@ -1675,3 +1683,64 @@ Next exact action:
 3. revise the recording pattern;
 4. record M01–M05;
 5. recruit 3–5 real beta operators before freezing public Foundation v1.
+
+
+---
+
+# 28. WEB EXPERIENCE V2
+
+Canonical web implementation:
+`main @ b7bcf0eee2bfc02c7c24b4020c207bcf0c6e78ba`
+
+Source PR:
+`#12`
+
+Experience tier:
+`L5 — Experimental / award-grade`
+
+Design doctrine:
+`rotprods/web-os → immersive-web-v7 + design_rules/01..10`
+
+Central metaphor:
+`INK ENGINE`
+
+```text
+ART
+→ SIGNAL
+→ CONVERSATION
+→ BOOKING
+→ REPEAT
+```
+
+Brand lock:
+`brand/BRAND_CANON_V2.md`
+
+Technical contract:
+- Next.js 16.3.3;
+- React 19.2;
+- R3F / Three.js / Drei;
+- GSAP + Lenis + Framer Motion;
+- maath/easing;
+- postprocessing;
+- stable WebGL2 production path;
+- WebGPU only as progressive enhancement;
+- mobile condensed edition;
+- reduced-motion edition;
+- procedural 3D fallback;
+- no external GLB required to boot;
+- existing private Supabase INKSCAN RPC.
+
+Build evidence:
+- clean install PASS;
+- TypeScript PASS;
+- production build PASS;
+- route generation PASS.
+
+Current web gate:
+`WEB_V2_BUILD_GREEN → PREVIEW_DEPLOYMENT`
+
+External blocker:
+Vercel billing/reactivation (issue #6).
+
+Content gate:
+production SVG/logo/font/VSL/artist/testimonial/ad assets.
