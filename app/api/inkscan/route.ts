@@ -8,6 +8,7 @@ const allowedFields = [
   "email",
   "constraint",
   "consent",
+  "website",
 ] as const;
 
 export async function POST(request: Request) {
@@ -17,6 +18,28 @@ export async function POST(request: Request) {
   for (const field of allowedFields) {
     const value = form.get(field);
     if (typeof value === "string") payload[field] = value.trim();
+  }
+
+  const honeypot = form.get("company");
+  if (typeof honeypot === "string" && honeypot.trim().length > 0) {
+    return NextResponse.redirect(new URL("/gracias", request.url), 303);
+  }
+
+  const maxLength: Record<string, number> = {
+    businessType: 20,
+    name: 160,
+    city: 120,
+    instagram: 160,
+    email: 254,
+    constraint: 1500,
+    consent: 8,
+    website: 300,
+  };
+
+  for (const [key, value] of Object.entries(payload)) {
+    if (value.length > (maxLength[key] ?? 500)) {
+      return NextResponse.redirect(new URL("/?inkscan=invalid#inkscan", request.url), 303);
+    }
   }
 
   if (
@@ -57,5 +80,5 @@ export async function POST(request: Request) {
     return NextResponse.redirect(new URL("/?inkscan=error#inkscan", request.url), 303);
   }
 
-  return NextResponse.redirect(new URL("/?inkscan=sent#inkscan", request.url), 303);
+  return NextResponse.redirect(new URL("/gracias", request.url), 303);
 }
