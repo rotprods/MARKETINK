@@ -389,16 +389,23 @@ Completed:
 - `CURRICULUM_READY`
 - `FOUNDATION_TRACK_READY_FOR_PRODUCTION`
 
-Current:
+Completed:
 `FOUNDATION_VALIDATED_PRE_FILMING`
+
+Current:
+`M00_PILOT_READY_TO_RECORD`
 
 Next:
 `M00_PILOT_RECORDED`
 
+Production sources:
+- `academy/production/M00_PILOT_PRODUCTION_PACK_V1.md`
+- `academy/production/FOUNDATION_RECORDING_QA_V1.md`
+
 The next useful work is:
-- record and QA M00 as the production-pattern pilot;
-- repair any production defects;
-- record M01–M05 using the validated scripts;
-- then recruit 3–5 external beta operators.
+- record M00-L01 as a micro-pilot;
+- score it against production QA;
+- repair the recording/edit pattern;
+- then record M00-L02–L06 before batching M01–M05.
 
 Do not skip ahead to custom LMS engineering.
