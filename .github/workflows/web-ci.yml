@@ -1,0 +1,46 @@
+name: MARKET.INK Web CI
+
+on:
+  pull_request:
+    paths:
+      - "app/**"
+      - "package.json"
+      - "package-lock.json"
+      - "tsconfig.json"
+      - "next.config.ts"
+      - "next-env.d.ts"
+      - ".github/workflows/web-ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "app/**"
+      - "package.json"
+      - "package-lock.json"
+      - "tsconfig.json"
+      - "next.config.ts"
+      - "next-env.d.ts"
+
+permissions:
+  contents: read
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Install
+        run: npm install --no-audit --no-fund
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
