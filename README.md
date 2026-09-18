@@ -65,7 +65,13 @@ Do not duplicate product code here.
 
 ## Current gate
 
-`MARKETINK_OS_BOOTSTRAP → CURRICULUM_READY`
+`FOUNDATION_ASSET_PACK_READY → M00_PRODUCTION_READY`
+
+Current:
+- `ACADEMY_MASTER_V1.md` defines M00–M05;
+- A01–A06 templates exist under `academy/templates/`;
+- `academy/demo/DEMO_STUDIO_V1.json` is the canonical synthetic demo;
+- M00 has a verified synthetic walkthrough and recording script.
 
 Next:
-build the Academy production template and fully implement modules M00–M05.
+run M01–M05 end-to-end against the demo studio, fix defects, then freeze the complete Foundation Track before filming.
