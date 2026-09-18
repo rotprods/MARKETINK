@@ -1910,3 +1910,67 @@ section[id] {
     pointer-events: none;
   }
 }
+
+
+/* Branded route/runtime fail-safe surfaces. */
+.runtime-fallback,
+.route-loading {
+  min-height: 100svh;
+  padding: clamp(24px, 6vw, 88px);
+  display: grid;
+  align-content: center;
+  gap: 20px;
+  background: var(--paper);
+  color: var(--black);
+}
+
+.runtime-fallback__mark,
+.route-loading strong {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(3rem, 10vw, 9rem);
+  line-height: 0.8;
+  letter-spacing: -0.055em;
+}
+
+.runtime-fallback__mark span,
+.route-loading strong span {
+  color: var(--red);
+}
+
+.runtime-fallback h1 {
+  max-width: 850px;
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(2.8rem, 7vw, 7rem);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.055em;
+}
+
+.runtime-fallback p,
+.route-loading p {
+  max-width: 620px;
+  margin: 0;
+  line-height: 1.55;
+}
+
+.runtime-fallback button,
+.runtime-fallback a {
+  width: fit-content;
+  min-height: 48px;
+  padding: 0 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--black);
+  background: transparent;
+  color: var(--black);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.runtime-fallback button {
+  border-color: var(--red);
+  background: var(--red);
+  color: var(--paper);
+}
