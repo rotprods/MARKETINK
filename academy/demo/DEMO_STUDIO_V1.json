@@ -5,7 +5,8 @@
     "studio_id": "DEMO-STUDIO-001",
     "studio_name": "Black Needle Lab",
     "city": "Murcia",
-    "period": "2026-08"
+    "period": "2026-08",
+    "version": "1.1"
   },
   "artists": [
     {
@@ -14,7 +15,9 @@
       "specialty": "blackwork",
       "sellable_hours": 96,
       "booked_hours": 72,
-      "average_ticket": 320
+      "average_ticket": 320,
+      "portfolio_proof": "strong",
+      "desired_work_priority": 5
     },
     {
       "artist_id": "DEMO-A02",
@@ -22,7 +25,9 @@
       "specialty": "realismo B&G",
       "sellable_hours": 112,
       "booked_hours": 98,
-      "average_ticket": 460
+      "average_ticket": 460,
+      "portfolio_proof": "strong",
+      "desired_work_priority": 3
     },
     {
       "artist_id": "DEMO-A03",
@@ -30,7 +35,9 @@
       "specialty": "fine line",
       "sellable_hours": 88,
       "booked_hours": 44,
-      "average_ticket": 190
+      "average_ticket": 190,
+      "portfolio_proof": "good",
+      "desired_work_priority": 5
     }
   ],
   "funnel": {
@@ -64,10 +71,78 @@
       "inquiries": 20
     }
   ],
+  "proof_bank": {
+    "google_reviews": {
+      "count": 186,
+      "average_rating": 4.8,
+      "synthetic": true
+    },
+    "healed_work_assets": 28,
+    "testimonial_assets": 14,
+    "repeat_client_examples": 22,
+    "awards": []
+  },
+  "current_positioning": {
+    "bio": "Black Needle Lab · Tattoo Studio · Murcia · DM para citas",
+    "priority_styles_not_explicit": true,
+    "routing_by_artist_not_explained": true,
+    "booking_cta": "DM para citas",
+    "website": "https://example.invalid/black-needle-lab",
+    "differentiation_claims": []
+  },
+  "instagram_current": {
+    "professional_account": true,
+    "public_name_clear": true,
+    "location_clear": true,
+    "specialty_clear": false,
+    "cta_visible": true,
+    "booking_path_works": false,
+    "pinned_start_here": false,
+    "pinned_proof": true,
+    "pinned_booking_offer": false,
+    "highlights_structured": false,
+    "broken_links_zero": true,
+    "contact_info_verified": true,
+    "portfolio_commercially_legible": true,
+    "claims_supported": true,
+    "manychat_readiness": false
+  },
+  "whatsapp_current": {
+    "business_profile_complete": false,
+    "business_hours_correct": true,
+    "booking_link_tested": false,
+    "stage_system_defined": false,
+    "quick_replies_count": 2,
+    "qualification_path_tested": false,
+    "deposit_handoff_tested": false,
+    "response_owner": "studio owner",
+    "followup_rule_exists": false,
+    "legacy_chats_categorized": false
+  },
+  "meta_current": {
+    "business_environment_exists": true,
+    "business_environment_owner": "Black Needle Lab",
+    "facebook_page_exists": true,
+    "instagram_professional_connected": true,
+    "ad_account_exists": true,
+    "ad_account_currency": "EUR",
+    "ad_account_timezone": "Europe/Madrid",
+    "billing_owner": "Black Needle Lab",
+    "two_factor_all_admins": false,
+    "marketink_partner_access": false,
+    "dataset_pixel_exists": true,
+    "domain_verified": false,
+    "metricool_connected": false,
+    "manychat_connected": false,
+    "former_user_access_reviewed": false
+  },
   "operating_observations": [
     "Mara has substantial open capacity.",
     "Studio receives enough inquiries to diagnose conversion before increasing spend.",
     "Follow-up is manual and inconsistent.",
-    "Source is known for first inquiry but revenue is not linked back to campaign/creative."
+    "Source is known for first inquiry but revenue is not linked back to campaign/creative.",
+    "Instagram portfolio quality is good but desired styles and artist routing are not commercially explicit.",
+    "WhatsApp Business exists but is being used mostly as an inbox rather than a stateful sales system.",
+    "Meta assets exist but security, partner access and domain/integration hygiene are incomplete."
   ]
 }
