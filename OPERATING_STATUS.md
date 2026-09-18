@@ -225,3 +225,41 @@ Current private state:
 - 0 outbound messages sent.
 
 External send remains gated.
+
+
+---
+
+# WEB V7 REGRESSION CONVERGENCE
+
+Merged production commit:
+`6bd48afe250fda1e1f6c493baeb4044daaf68a87`
+
+Source PR:
+`#14`
+
+Production CI:
+- typecheck: PASS;
+- Next.js production build: PASS;
+- Playwright Chromium: **15/15 PASS**.
+
+Standalone reference:
+- legacy interaction regression: **89/89 PASS**;
+- deep accessibility/performance regression: **27/27 PASS**;
+- combined: **116/116 PASS**.
+
+Merged runtime improvements:
+- skip-link/main target;
+- touch/reduced-motion Lenis behavior;
+- offscreen R3F demand frameloop;
+- stronger contrast/microtype/reflow guards;
+- form autocomplete/inputMode;
+- production Playwright gate.
+
+Canonical regression contract:
+`web/WEB_V7_REGRESSION_CONTRACT.md`
+
+Current web gate:
+`WEB_V7_PRODUCTION_REGRESSION_GREEN`
+
+Next web gate:
+`WEB_V7_CROSS_BROWSER_AND_DATA_HARDENED`
