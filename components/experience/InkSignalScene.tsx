@@ -20,6 +20,7 @@ type SceneProps = {
   progressRef: MutableRefObject<number>;
   reducedMotion: boolean;
   highQuality: boolean;
+  active: boolean;
 };
 
 function useSignalGeometry() {
@@ -298,6 +299,7 @@ export function InkSignalScene(props: SceneProps) {
         powerPreference: "high-performance",
       }}
       aria-hidden="true"
+      frameloop={props.active && !props.reducedMotion ? "always" : "demand"}
     >
       <Scene {...props} />
     </Canvas>
