@@ -1650,19 +1650,26 @@ Execute in this order:
 - `CURRICULUM_READY`
 - `FOUNDATION_TRACK_READY_FOR_PRODUCTION`
 
-**Current gate:** `FOUNDATION_ASSET_PACK_READY`
+**Completed gates:**
+- `MARKETINK_OS_BOOTSTRAP`
+- `CURRICULUM_READY`
+- `FOUNDATION_TRACK_READY_FOR_PRODUCTION`
+- `FOUNDATION_ASSET_PACK_READY`
+- `M00_PRODUCTION_READY`
 
-**Next gate:** `M00_PRODUCTION_READY`
+**Current gate:** `FOUNDATION_VALIDATED_PRE_FILMING`
+
+**Next gate:** `M00_PILOT_RECORDED`
 
 Current evidence:
-- canonical Academy master exists;
-- A01–A06 downloadable templates exist;
-- synthetic demo studio exists;
-- M00 has passed a full synthetic run;
-- M00 recording script exists.
+- M00–M05 have all been executed against the canonical synthetic studio;
+- M01–M05 recording scripts exist;
+- one Instagram QA model defect was discovered and repaired before filming;
+- core Instagram quality and Manychat integration readiness are now separate gates.
 
 Next exact action:
-1. QA A01–A06 as student-facing assets;
-2. generate M01–M05 demo runs;
-3. write M01–M05 recording scripts;
-4. run Foundation Track end-to-end before filming.
+1. record M00 pilot;
+2. QA pacing, clarity, captions and template handoff;
+3. revise the recording pattern;
+4. record M01–M05;
+5. recruit 3–5 real beta operators before freezing public Foundation v1.
