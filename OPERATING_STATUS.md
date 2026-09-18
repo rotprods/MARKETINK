@@ -146,3 +146,23 @@ Frontend merge waits for build evidence.
 8. Only then merge/deploy.
 9. Recruit first beta operators.
 10. Start evidence-backed case-study capture immediately.
+
+
+---
+
+# BETA OPERATOR WAVE 001
+
+Private CRM state:
+- 15 Murcia operators registered;
+- 5 enriched with public evidence;
+- 5 provisional ICP assessments;
+- highest provisional score = 66 / Tier B;
+- max evidence coverage = 44.44%;
+- 0 outreach sent;
+- 0 hard gates cleared.
+
+Current beta gate:
+`BETA_DECISION_MAKER_RESOLUTION`
+
+Rule:
+No prospect-specific outreach until identity/contact route and hard-gate review are complete.

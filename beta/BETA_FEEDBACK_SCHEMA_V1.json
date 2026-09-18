@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MARKET.INK Beta Operator Feedback",
+  "type": "object",
+  "required": [
+    "beta_id",
+    "operator_type",
+    "week",
+    "module",
+    "artifact_status",
+    "time_minutes",
+    "blockers",
+    "support_minutes",
+    "next_action"
+  ],
+  "properties": {
+    "beta_id": {
+      "type": "string"
+    },
+    "operator_type": {
+      "type": "string",
+      "enum": [
+        "studio_owner",
+        "studio_manager",
+        "independent_artist"
+      ]
+    },
+    "week": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 6
+    },
+    "module": {
+      "type": "string"
+    },
+    "artifact_status": {
+      "type": "string",
+      "enum": [
+        "NOT_STARTED",
+        "IN_PROGRESS",
+        "PASS",
+        "REVISION",
+        "BLOCKED"
+      ]
+    },
+    "time_minutes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "template_defects": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ui_drift": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "support_minutes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "business_observation": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "next_action": {
+      "type": "string"
+    },
+    "curriculum_revision_required": {
+      "type": "boolean"
+    }
+  }
+}
