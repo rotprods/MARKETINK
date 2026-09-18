@@ -187,3 +187,16 @@ Current aggregate:
 
 Next beta gate:
 `BETA_FIT_REVIEW`
+
+
+## Beta routing delta
+
+Current private state:
+- 10 DISCOVERED;
+- 4 REVIEW;
+- 1 NURTURE benchmark;
+- 3 evidence-safe routing drafts prepared, not sent;
+- 0 READY_TO_INVITE;
+- 0 outbound messages sent.
+
+External send remains gated.
