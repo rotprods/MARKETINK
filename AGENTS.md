@@ -390,15 +390,15 @@ Completed:
 - `FOUNDATION_TRACK_READY_FOR_PRODUCTION`
 
 Current:
-`FOUNDATION_ASSET_PACK_READY`
+`FOUNDATION_VALIDATED_PRE_FILMING`
 
 Next:
-`M00_PRODUCTION_READY`
+`M00_PILOT_RECORDED`
 
 The next useful work is:
-- run M01–M05 end-to-end against the canonical synthetic demo;
-- repair template defects;
-- create M01–M05 recording scripts;
-- freeze Foundation Track v1 before filming.
+- record and QA M00 as the production-pattern pilot;
+- repair any production defects;
+- record M01–M05 using the validated scripts;
+- then recruit 3–5 external beta operators.
 
 Do not skip ahead to custom LMS engineering.

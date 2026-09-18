@@ -65,13 +65,14 @@ Do not duplicate product code here.
 
 ## Current gate
 
-`FOUNDATION_ASSET_PACK_READY → M00_PRODUCTION_READY`
+`FOUNDATION_VALIDATED_PRE_FILMING → M00_PILOT_RECORDED`
 
 Current:
 - `ACADEMY_MASTER_V1.md` defines M00–M05;
 - A01–A06 templates exist under `academy/templates/`;
-- `academy/demo/DEMO_STUDIO_V1.json` is the canonical synthetic demo;
-- M00 has a verified synthetic walkthrough and recording script.
+- the synthetic demo studio has been run through M00–M05;
+- recording scripts exist for the complete Foundation Track;
+- the first curriculum defect found during validation has been repaired.
 
 Next:
-run M01–M05 end-to-end against the demo studio, fix defects, then freeze the complete Foundation Track before filming.
+record and QA the M00 pilot before batch-recording the rest of Foundation.
