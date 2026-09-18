@@ -258,8 +258,40 @@ Merged runtime improvements:
 Canonical regression contract:
 `web/WEB_V7_REGRESSION_CONTRACT.md`
 
-Current web gate:
-`WEB_V7_PRODUCTION_REGRESSION_GREEN`
-
-Next web gate:
+Completed web gate:
 `WEB_V7_CROSS_BROWSER_AND_DATA_HARDENED`
+
+Merged load-reliability commit:
+`9d502b721385a6158d031b36c28f1a1d4eda9205`
+
+Source PR:
+`#16`
+
+Exact-head CI:
+- TypeScript: PASS
+- Next.js production build: PASS
+- Chromium: PASS
+- Firefox: PASS
+- WebKit: PASS
+- Cross-browser production E2E: **54/54 PASS**
+- CI retries: **0**
+- No-WebGL2 fail-soft path: PASS
+- Mobile WebKit CTA hit-testing: PASS
+- operational microtype >=12px: PASS
+- 320/390/768/1440 horizontal overflow matrix: PASS
+- WCAG text-spacing overflow gate: PASS
+
+Load reliability changes:
+- WebGL2 capability detection before mounting R3F;
+- branded static hero fallback when WebGL2 is unavailable;
+- canvas semantics forced on the actual DOM canvas;
+- R3F pauses offscreen;
+- entrance motion disabled on touch/coarse pointer;
+- mobile CTA stacking/hit-testing repaired;
+- purely decorative mobile layers cannot intercept pointer input;
+- Playwright retries disabled so flaky interactions fail CI.
+
+Current web gate:
+`WEB_V7_LOAD_RELIABILITY_GREEN → PUBLIC_PREVIEW`
+
+Public URL remains a deployment/infrastructure gate, not a runtime-code gate.
