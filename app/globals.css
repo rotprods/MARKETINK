@@ -155,3 +155,26 @@ details p { max-width: 760px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+.honeypot {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+.thankYou {
+  min-height: 100vh;
+  display: grid;
+  align-items: center;
+  background: var(--paper);
+}
+.thankYou .shell { max-width: 900px; padding-block: 80px; }
+.thankYou h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3.4rem, 8vw, 7rem);
+  line-height: .9;
+  letter-spacing: -.055em;
+  margin: 28px 0;
+}
+.thankYou p:not(.sectionTag) { max-width: 680px; font-size: 1.15rem; }
