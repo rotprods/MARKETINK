@@ -39,10 +39,21 @@ test.describe("MARKET.INK production regression", () => {
       const link = page.locator(`a[href="${href}"]`).first();
       await expect(link).toBeVisible();
       await link.click();
-      await page.waitForTimeout(300);
-      const top = await page.locator(href).evaluate((element) => element.getBoundingClientRect().top);
+
+      await expect
+        .poll(
+          async () =>
+            page
+              .locator(href)
+              .evaluate((element) => element.getBoundingClientRect().top),
+          { timeout: 3_000 },
+        )
+        .toBeLessThanOrEqual(130);
+
+      const top = await page
+        .locator(href)
+        .evaluate((element) => element.getBoundingClientRect().top);
       expect(top).toBeGreaterThanOrEqual(-12);
-      expect(top).toBeLessThanOrEqual(130);
     }
   });
 
