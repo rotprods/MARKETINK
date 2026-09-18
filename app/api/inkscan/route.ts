@@ -43,7 +43,7 @@ export async function POST(request: Request) {
   }
 
   if (
-    !payload.businessType ||
+    !["studio", "artist"].includes(payload.businessType) ||
     !payload.name ||
     !payload.city ||
     !payload.instagram ||
@@ -53,30 +53,39 @@ export async function POST(request: Request) {
     return NextResponse.redirect(new URL("/?inkscan=invalid#inkscan", request.url), 303);
   }
 
-  const webhookUrl = process.env.MARKETINK_CRM_WEBHOOK_URL;
-  const webhookSecret = process.env.MARKETINK_CRM_WEBHOOK_SECRET;
+  const supabaseUrl = process.env.MARKETINK_SUPABASE_URL;
+  const supabaseSecretKey = process.env.MARKETINK_SUPABASE_SECRET_KEY;
 
-  if (!webhookUrl || !webhookSecret) {
-    console.error("INKSCAN webhook is not configured.");
+  if (!supabaseUrl || !supabaseSecretKey) {
+    console.error("INKSCAN server integration is not configured.");
     return NextResponse.redirect(new URL("/?inkscan=unavailable#inkscan", request.url), 303);
   }
 
-  const response = await fetch(webhookUrl, {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-      "x-marketink-secret": webhookSecret,
+  const response = await fetch(
+    `${supabaseUrl.replace(/\/$/, "")}/rest/v1/rpc/marketink_capture_web_inkscan`,
+    {
+      method: "POST",
+      headers: {
+        apikey: supabaseSecretKey,
+        Authorization: `Bearer ${supabaseSecretKey}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        p_business_type: payload.businessType,
+        p_name: payload.name,
+        p_city: payload.city,
+        p_instagram: payload.instagram,
+        p_email: payload.email,
+        p_website: payload.website || null,
+        p_constraint_text: payload.constraint || null,
+        p_source: "marketink-web",
+      }),
+      cache: "no-store",
     },
-    body: JSON.stringify({
-      ...payload,
-      source: "marketink-web",
-      capturedAt: new Date().toISOString(),
-    }),
-    cache: "no-store",
-  });
+  );
 
   if (!response.ok) {
-    console.error("INKSCAN webhook failed", response.status);
+    console.error("INKSCAN CRM RPC failed", response.status);
     return NextResponse.redirect(new URL("/?inkscan=error#inkscan", request.url), 303);
   }
 
