@@ -220,6 +220,11 @@ export default function HomePage() {
             <label>Ciudad<input name="city" required /></label>
             <label>Instagram<input name="instagram" placeholder="@..." required /></label>
             <label>Email<input type="email" name="email" required /></label>
+            <label>Web (opcional)<input type="url" name="website" placeholder="https://..." /></label>
+            <label className="honeypot" aria-hidden="true">
+              Empresa
+              <input name="company" tabIndex={-1} autoComplete="off" />
+            </label>
             <label>
               Principal bloqueo
               <textarea name="constraint" rows={4} placeholder="Ej. huecos en agenda, no sé qué contenido hacer, muchos DMs pero pocas reservas..." />
