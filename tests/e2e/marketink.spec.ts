@@ -51,11 +51,16 @@ test.describe("MARKET.INK production regression", () => {
     await page.addInitScript(() => {
       const original = HTMLCanvasElement.prototype.getContext;
       HTMLCanvasElement.prototype.getContext = function (
+        this: HTMLCanvasElement,
         contextId: string,
         ...args: unknown[]
       ) {
         if (contextId === "webgl2") return null;
-        return original.call(this, contextId as never, ...(args as never[]));
+        return (original as (...callArgs: unknown[]) => unknown).call(
+          this,
+          contextId,
+          ...args,
+        ) as never;
       } as typeof HTMLCanvasElement.prototype.getContext;
     });
 
