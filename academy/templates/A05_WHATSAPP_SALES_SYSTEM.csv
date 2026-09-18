@@ -1,0 +1,2 @@
+reply_id,shortcut,stage,trigger,message,required_personalization,next_state,next_action,owner,status
+WA-001,/hola,NEW,First inbound message,"Hola, gracias por escribir. Cuéntame brevemente qué idea tienes y te ayudo a encontrar el siguiente paso.",name,QUALIFYING,Collect project basics,,DRAFT
