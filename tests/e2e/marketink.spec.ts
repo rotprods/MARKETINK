@@ -209,6 +209,48 @@ test.describe("MARKET.INK production regression", () => {
     await context.close();
   });
 
+
+  test("operational visible text does not fall below 12px", async ({ page }) => {
+    await page.goto("/");
+
+    const tiny = await page.locator("body *").evaluateAll((elements) =>
+      elements
+        .filter(
+          (element) =>
+            element.children.length === 0 &&
+            (element.textContent ?? "").trim().length > 0 &&
+            element.getClientRects().length > 0,
+        )
+        .map((element) => ({
+          text: (element.textContent ?? "").trim().slice(0, 50),
+          size: Number.parseFloat(getComputedStyle(element).fontSize),
+          className: (element as HTMLElement).className,
+        }))
+        .filter((item) => item.size < 12),
+    );
+
+    expect(tiny).toEqual([]);
+  });
+
+  test("WCAG text-spacing override does not create horizontal page overflow", async ({ page }) => {
+    for (const viewport of [
+      { width: 390, height: 844 },
+      { width: 1440, height: 900 },
+    ]) {
+      await page.setViewportSize(viewport);
+      await page.goto("/");
+      await page.addStyleTag({
+        content:
+          "*{line-height:1.5!important;letter-spacing:.12em!important;word-spacing:.16em!important}p{margin-bottom:2em!important}",
+      });
+
+      const overflow = await page.evaluate(
+        () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      );
+      expect(overflow).toBeLessThanOrEqual(1);
+    }
+  });
+
   test("small-screen touch targets are at least 44px for primary controls", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");
