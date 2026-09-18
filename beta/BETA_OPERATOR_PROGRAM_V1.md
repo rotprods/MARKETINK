@@ -429,9 +429,12 @@ Program is ready to recruit when:
 - [x] metrics defined;
 - [x] beta scorecard exists;
 - [x] onboarding questionnaire exists;
-- [ ] first 15 private CRM candidates exist;
-- [ ] top 5 are enriched;
-- [ ] recruitment messages pass evidence QA.
+- [x] first 15 private CRM candidates exist;
+- [x] top 5 are enriched;
+- [x] recruitment message framework passes evidence QA; real personalized messages still require prospect-level gate.
+
+Completed gate:
+`BETA_CANDIDATE_UNIVERSE`
 
 Current gate:
-`BETA_CANDIDATE_UNIVERSE`
+`BETA_DECISION_MAKER_RESOLUTION`
