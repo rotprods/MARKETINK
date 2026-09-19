@@ -176,9 +176,9 @@ export function MarketInkExperience() {
   const [capability, setCapability] = useState(() => ({
     webgl2: false,
     webgpu: false,
-    reducedMotion: false,
-    touch: false,
-    coarsePointer: false,
+    reducedMotion: true,
+    touch: true,
+    coarsePointer: true,
   }));
 
   useMotionValueEvent(scrollYProgress, "change", (value) => {
@@ -296,9 +296,8 @@ export function MarketInkExperience() {
         <div className="hero-grid">
           <motion.div
             className="hero-copy"
-            initial={motionSafe ? false : { opacity: 0, y: 32 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: motionSafe ? 0 : 0.28 }}
           >
             <div className="hero-eyebrow">
               <span>TATTOO GROWTH OS</span>
