@@ -1910,3 +1910,43 @@ section[id] {
     pointer-events: none;
   }
 }
+
+
+/* V8 load reliability: keep interactive hero controls above decorative layers. */
+.hero-grid,
+.hero-copy,
+.hero-actions {
+  position: relative;
+  z-index: 20;
+}
+
+.hero-actions .button {
+  position: relative;
+  z-index: 30;
+  pointer-events: auto;
+}
+
+.hero-scene,
+.hero-scene canvas,
+.hero-scene__fallback,
+.hero::before,
+.hero::after,
+.hero-meta,
+.hero-scroll-cue {
+  pointer-events: none;
+}
+
+.operator-section {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 820px) {
+  .hero-grid {
+    min-height: auto;
+  }
+
+  .hero-copy {
+    pointer-events: auto;
+  }
+}
