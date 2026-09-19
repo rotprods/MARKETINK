@@ -28,6 +28,10 @@ on:
       - "next.config.ts"
       - "next-env.d.ts"
 
+concurrency:
+  group: marketink-web-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
