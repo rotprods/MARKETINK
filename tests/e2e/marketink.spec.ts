@@ -44,6 +44,22 @@ test.describe("MARKET.INK production regression", () => {
     }
   });
 
+  test("core first frame remains usable with JavaScript disabled", async ({ browser }) => {
+    const context = await browser.newContext({
+      javaScriptEnabled: false,
+      viewport: { width: 390, height: 844 },
+    });
+    const page = await context.newPage();
+
+    await page.goto("/");
+
+    await expect(page.getByRole("heading", { name: /Agenda llena/i })).toBeVisible();
+    await expect(page.getByRole("link", { name: /haz tu inkscan/i }).first()).toBeVisible();
+    await expect(page.locator("#inkscan")).toHaveCount(1);
+
+    await context.close();
+  });
+
   test("loads a static branded hero when WebGL2 is unavailable", async ({ browser }) => {
     const context = await browser.newContext();
     const page = await context.newPage();
